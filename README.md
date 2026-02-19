@@ -1,18 +1,23 @@
-# permission-finder
+# Find Permission Set 
 
 ## Install
+1. Download the `vsix`-file from  the latest [release](https://github.com/eklop4ps/find-permissionset/releases)
+1. Go to the Extensions panel in VS Code, and drag the `vsix` file in there.
+1. Run command `Developer: Reload Window`
 
-1. Drag the `vsix` file to Extensions in VS Code to install the extension
-2. `F1 > Reload window`
-3. `F1> Set permission file` and select the permission file.
+## Setup
+1. Create a permissions file, as described below, and move it to a suitable location.
+1. Run command `4PS: Set permission file` and select the permission file.
+1. Run command `Developer: Reload Window`
 
 ## Usage
 
-1. `F1` -> `Search permission set`
+1. Place your cursor at the location you want to add the permission line.
+1. Run command `4PS: Find Permission set for object ID`
 2. Enter the numerical ID of the object.
-3. The line `LibraryLowerPermissions.AddPermissionSet('4PS...')` will be added to your editor.
+3. The line `LibraryLowerPermissions.AddPermissionSet(..)` with the permission set ID will be added to your editor.
 
-## How to generate the required permission file
+## How to generate permissions file
 
 1. In 4PS Construct, go to the page **Expanded Permission List**
 1. Set these filters
