@@ -1,0 +1,50 @@
+{
+  "name": "permission-finder",
+  "displayName": "Permission Finder",
+  "description": "Find the permission set you need for a specific table.",
+  "version": "1.0.9",
+  "engines": {
+    "vscode": "^1.109.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onFileSystem:aloutlinesyntax",
+    "onLanguage:al",
+    "onLanguage:alapp",
+    "workspaceContains:app.json"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "permission-finder.setPermissionFile",
+        "title": "Set Permission File"
+      },
+      {
+        "command": "permission-finder.searchPermissionSet",
+        "title": "Search permission set"
+      }
+    ],
+    "configuration": {
+      "title": "Permission Finder",
+      "properties": {
+        "permissionFinder.permissionFilePath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the permissions JSON file",
+          "scope": "resource"
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.109.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "eslint": "^9.39.2",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
