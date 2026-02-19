@@ -3,7 +3,7 @@
   "displayName": "Permission Finder",
   "description": "Find the permission set you need for a specific table.",
   "publisher": "4PS",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.109.0"
   },
@@ -41,6 +41,12 @@
           "type": "string",
           "default": "",
           "description": "Path to the permissions JSON file",
+          "scope": "resource"
+        },
+        "permissionFinder.fallbackPermissionSetName": {
+          "type": "string",
+          "default": "D365 AUTOMATION",
+          "description": "Name of the fallback permission set to suggest when an object ID is not found",
           "scope": "resource"
         }
       }

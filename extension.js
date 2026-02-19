@@ -33,6 +33,7 @@ function activate(context) {
 		try {
 			const config = vscode.workspace.getConfiguration('permissionFinder');
 			const permissionFilePath = config.get('permissionFilePath');
+			const fallbackPermissionSetName = config.get('fallbackPermissionSetName', 'D365 AUTOMATION');
 
 			if (!permissionFilePath) {
 				vscode.window.showErrorMessage('Permission file path is not configured. Please set "permissionFilePath" in settings.');
@@ -48,23 +49,32 @@ function activate(context) {
 			const cleanedContent = fileContent.replace(/\r|\n/g, '').replace("\ufeff", "");
 			const permissions = JSON.parse(cleanedContent);
 		
-			let objectId = await vscode.window.showInputBox({
+			let objectIdInput = await vscode.window.showInputBox({
 				prompt: 'Enter the Object ID',
 				placeHolder: 'Object ID'
 			});
 
-			if (!objectId) {
+			if (!objectIdInput) {
 				return;
 			}
+
+			const objectId = objectIdInput.trim();
 
 			if(isNaN(objectId)) {
 				vscode.window.showErrorMessage(`"${objectId}" is not valid. Please try again with a numeric value.`);
 			}
 
-			const roleId = permissions['ID_'+objectId.trim()];
+			let roleId = permissions['ID_'+objectId];
 
 			if (roleId === undefined) {
-				vscode.window.showErrorMessage(`Object ID "${objectId.trim()}" not found in permission file.`);
+				const insertAutomation = await vscode.window.showQuickPick(['Yes', 'No'], {
+					placeHolder: `No results for object ID "${objectId}". Do you want to insert ${fallbackPermissionSetName} instead?`
+				});
+
+				roleId = (insertAutomation === 'Yes') ? fallbackPermissionSetName : null;
+			}
+
+			if (!roleId) {
 				return;
 			}
 
