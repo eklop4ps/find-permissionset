@@ -64,7 +64,7 @@ function activate(context) {
 			const roleId = permissions['ID_'+objectId.trim()];
 
 			if (roleId === undefined) {
-				vscode.window.showErrorMessage(`Object ID "${objectId}" not found in permission file.`);
+				vscode.window.showErrorMessage(`Object ID "${objectId.trim()}" not found in permission file.`);
 				return;
 			}
 
