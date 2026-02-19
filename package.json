@@ -2,13 +2,18 @@
   "name": "permission-finder",
   "displayName": "Permission Finder",
   "description": "Find the permission set you need for a specific table.",
-  "version": "1.0.9",
+  "publisher": "4PS",
+  "version": "0.0.1",
   "engines": {
     "vscode": "^1.109.0"
   },
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eklop4ps/find-permissionset.git"
+  },
   "activationEvents": [
     "onFileSystem:aloutlinesyntax",
     "onLanguage:al",
@@ -20,11 +25,13 @@
     "commands": [
       {
         "command": "permission-finder.setPermissionFile",
-        "title": "Set Permission File"
+        "title": "Set Permission File",
+        "category": "4PS"
       },
       {
         "command": "permission-finder.searchPermissionSet",
-        "title": "Search permission set"
+        "title": "Find permission set for object ID",
+        "category": "4PS"
       }
     ],
     "configuration": {
